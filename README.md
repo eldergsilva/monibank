@@ -1,4 +1,4 @@
-### Formulário de criação de contas para o banco virtual .
+# Formulário de criação de contas para o banco virtual .
 
 ## Tecnologias utilizadas durante o curso
 * JavaScript
