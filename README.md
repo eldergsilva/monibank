@@ -8,4 +8,4 @@
 * HTML
 * CSS
 
-###  para usar o projeto basta baixar e executar o arquivo  index.html em sua maquina
+
