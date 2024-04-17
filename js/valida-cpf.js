@@ -1,12 +1,13 @@
-export default function ehUmCpf(campo){
-    const cpf  = campo.value.replace(/\.|-/g,"");
-    if (validaNumerosRepitidos(cpf) || validaPrimeiroDigito(cpf)|| validaSegundoDigito(cpf)) {    
-         campo.setCustomValidity('Esse cpf não é valido')
+
+export default function ehUmCPF(campo) {
+    const cpf = campo.value.replace(/\.|-/g, "");
+    if (validaNumerosRepetidos(cpf) || validaPrimeiroDigito(cpf) || validaSegundoDigito(cpf)) {
+        campo.setCustomValidity('Esse cpf não é válido')
     }
 }
 
-function validaNumerosRepitidos (cpf){
-    const numerosRepetidos=[
+function validaNumerosRepetidos(cpf) {
+    const numerosRepetidos = [
         '00000000000',
         '11111111111',
         '22222222222',
@@ -16,35 +17,44 @@ function validaNumerosRepitidos (cpf){
         '66666666666',
         '77777777777',
         '88888888888',
-        '99999999999',
+        '99999999999'
     ]
+
     return numerosRepetidos.includes(cpf)
 }
 
-function validaPrimeiroDigito(){
+function validaPrimeiroDigito(cpf) {
     let soma = 0;
-    let multiplicador =10;
-    for (let tamanho =0;tamanho <9 ;tamanho++){
-        soma +=cpf[tamanho]* multiplicador;
-        multiplicador --;
-    } 
-    soma =(soma*10)%11;
-    if (soma == 10 || soma == 1) {
-        soma=0;        
+    let multiplicador = 10;
+
+    for (let tamanho = 0; tamanho < 9; tamanho++) {
+        soma += cpf[tamanho] * multiplicador;
+        multiplicador--
     }
-    return soma[9]
+
+    soma = (soma * 10) % 11;
+
+    if (soma == 10 || soma == 11) {
+        soma = 0;
+    }
+
+    return soma != cpf[9];
 }
 
-function validaSegundoDigito(){
+function validaSegundoDigito(cpf) {
     let soma = 0;
-    let multiplicador =11;
-    for (let tamanho =0;tamanho <10 ;tamanho++){
-        soma +=cpf[tamanho]* multiplicador;
-        multiplicador --;
-    } 
-    soma =(soma*10)%11;
-    if (soma == 10 || soma == 1) {
-        soma=0;        
+    let multiplicador = 11;
+
+    for (let tamanho = 0; tamanho < 10; tamanho++) {
+        soma += cpf[tamanho] * multiplicador;
+        multiplicador--
     }
-    return soma[10]
+
+    soma = (soma * 10) % 11;
+
+    if (soma == 10 || soma == 11) {
+        soma = 0;
+    }
+
+    return soma != cpf[10];
 }
